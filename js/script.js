@@ -37,28 +37,62 @@ const teamMembers = [
   }
 ];
 
+// VARIABLE
+const album = document.querySelector('.album');
+const formMember = document.querySelector('form');
+const formNewMember = document.querySelectorAll('input');
+
+// FUNCTION DECLARETION
+
 let setMember = (member) => {
   const { name, role, email, img } = member;
   return `
-        <div class="card">
-          <img src="./${img}" alt="${name}">
-          <div class="desc">
-              <ul>
-                  <li>
-                      <h4>${name}</h4>
-                  </li>
-                  <ul>${role}</ul>
-                  <li><a href="">${email}</a></li>
-              </ul>
-          </div>
+      <div class="card">
+        <img src="./${img}" alt="${name}">
+        <div class="desc">
+          <ul>
+            <li><h4>${name}</h4></li>
+            <li>${role}</li>
+            <li><a href="">${email}</a></li>
+          </ul>
+        </div>
       </div>
 `}
 
-const album = document.querySelector('.album');
-
-for (let i = 0; i < teamMembers.length; i++) {
-  const element = teamMembers[i];
-
-  const member = setMember(element);
-  album.innerHTML += member;
+const setAlbumMembers = () => {
+  let allMember = '';
+  for (let i = 0; i < teamMembers.length; i++) {
+    const element = teamMembers[i];
+    const member = setMember(element);
+    allMember += member;
+  }
+  album.innerHTML = allMember;
 }
+
+// FUNCTION ON SUBMIT
+
+const setNewMember = (event) => {
+  event.preventDefault();
+  let [name, role, email, img] = formNewMember;
+  name = name.value.trim();
+  role = role.value.trim();
+  email = email.value.trim();
+  img = img.value.trim();
+
+  const newMember = {
+    name,
+    role,
+    email,
+    img
+  }
+
+  teamMembers.push(newMember);
+  setAlbumMembers();
+
+}
+
+formMember.addEventListener("submit", setNewMember);
+
+// CALL FUNCTION
+
+setAlbumMembers();
