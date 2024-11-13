@@ -49,13 +49,11 @@ let setMember = (member) => {
   return `
       <div class="card">
         <img src="./${img}" alt="${name}">
-        <div class="desc">
-          <ul>
-            <li><h4>${name}</h4></li>
-            <li>${role}</li>
-            <li><a href="">${email}</a></li>
-          </ul>
-        </div>
+        <ul class="desc">
+          <li>${name}</li>
+          <li>${role}</li>
+          <li><a href="">${email}</a></li>
+        </ul>
       </div>
 `}
 
@@ -86,8 +84,34 @@ const setNewMember = (event) => {
     img
   }
 
+  const cardMember = document.createElement("div");
+  cardMember.classList.add("card");
+  const imgCardMember = document.createElement("img");
+  imgCardMember.src = `${img}`
+  imgCardMember.alt = `${name}`
+  const descCardMember = document.createElement("ul");
+  descCardMember.classList.add("desc");
+  const nameDescCardMember = document.createElement("li");
+  nameDescCardMember.innerText = `${name}`;
+  const roleDescCardMember = document.createElement("li");
+  roleDescCardMember.innerText = `${role}`;
+  const emailDescCardMember = document.createElement("li");
+  const anchorEmail = document.createElement("a");
+  anchorEmail.innerText = `${email}`;
+  emailDescCardMember.appendChild(anchorEmail);
+
+
+  descCardMember.append(nameDescCardMember, roleDescCardMember, emailDescCardMember)
+
+  cardMember.appendChild(imgCardMember);
+  cardMember.appendChild(descCardMember);
+  album.appendChild(cardMember);
+  console.log(album);
+
   teamMembers.push(newMember);
-  setAlbumMembers();
+  // setAlbumMembers();
+
+  formMember.reset()
 
 }
 
