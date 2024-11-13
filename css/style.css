@@ -1,0 +1,41 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+img {
+    max-width: 100%;
+    display: inline-block;
+}
+
+li {
+    list-style: none;
+}
+
+/**************
+**** CARD *****
+**************/
+
+.card {
+    background-color: #000;
+    display: flex;
+    width: 33%;
+}
+
+.card img {
+    width: 80px;
+}
+
+.desc {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 8px;
+    color: #ffff;
+}
+
+.desc a {
+    text-decoration: none;
+    color: aqua;
+}

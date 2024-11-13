@@ -36,3 +36,29 @@ const teamMembers = [
     img: "img/female3.png"
   }
 ];
+
+let setMember = (member) => {
+  const { name, role, email, img } = member;
+  return `
+        <div class="card">
+          <img src="./${img}" alt="${name}">
+          <div class="desc">
+              <ul>
+                  <li>
+                      <h4>${name}</h4>
+                  </li>
+                  <ul>${role}</ul>
+                  <li><a href="">${email}</a></li>
+              </ul>
+          </div>
+      </div>
+`}
+
+const album = document.querySelector('.album');
+
+for (let i = 0; i < teamMembers.length; i++) {
+  const element = teamMembers[i];
+
+  const member = setMember(element);
+  album.innerHTML += member;
+}
